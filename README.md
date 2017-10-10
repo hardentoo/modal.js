@@ -53,6 +53,7 @@ UI = new Modal({
     r: () => location.reload(),
     u: () => location.href = location.href.replace(new RegExp('^([a-z]+://.+)/.+/?$'), '$1'),
     U: () => location.href = location.origin,
+    Escape: () => document.activeElement.blur()
   },
   insert: {
     Escape: () => document.activeElement.blur()
