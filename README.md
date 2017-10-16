@@ -11,8 +11,8 @@ Methods
 - `Modal`
   - `new`
     - `commands`
-  - `listen`
-  - `unlisten`
+  - `start`
+  - `stop`
 
 With `commands` being:
 
@@ -63,7 +63,7 @@ UI = new Modal({
 ```
 
 ``` javascript
-UI.listen()
+UI.start()
 ```
 
 [is-element-editable.js]: https://github.com/alexherbo2/is-element-editable.js
