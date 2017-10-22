@@ -11,6 +11,7 @@ Methods
 - `Modal`
   - `new`
     - `commands`
+  - `commands`
   - `start`
   - `stop`
 
