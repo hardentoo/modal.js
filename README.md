@@ -11,7 +11,10 @@ Methods
 - `Modal`
   - `new`
     - `commands`
+    - Options
+      - `context`
   - `commands`
+  - `context`
   - `start`
   - `stop`
 
@@ -42,35 +45,89 @@ Examples
 UI = {
   Main: new Modal({
     normal: {
-      j: () => window.scrollBy(0, +40),
-      k: () => window.scrollBy(0, -40),
-      h: () => window.scrollBy(-40, 0),
-      l: () => window.scrollBy(+40, 0),
-      J: () => window.scrollBy(0, +window.innerHeight),
-      K: () => window.scrollBy(0, -window.innerHeight),
-      g: () => window.scroll(0, 0),
-      G: () => window.scroll(0, document.body.scrollHeight),
-      H: () => history.go(-1),
-      L: () => history.go(+1),
-      r: () => location.reload(),
-      R: () => location.reload(true),
-      u: () => location.href = location.href.replace(new RegExp('^([a-z]+://.+)/.+/?$'), '$1'),
-      U: () => location.href = location.origin,
-      Escape: () => document.activeElement.blur(),
-      ['a-Escape']: () => {
-        UI.Main.stop()
-        UI.Idle.start()
+      j: {
+        description: 'Down',
+        command: () => window.scrollBy(0, 40)
+      },
+      k: {
+        description: 'Up',
+        command: () => window.scrollBy(0, -40)
+      },
+      h: {
+        description: 'Left',
+        command: () => window.scrollBy(-40, 0)
+      },
+      l: {
+        description: 'Right',
+        command: () => window.scrollBy(40, 0)
+      },
+      J: {
+        description: 'Page Down',
+        command: () => window.scrollBy(0, window.innerHeight)
+      },
+      K: {
+        description: 'Page Up',
+        command: () => window.scrollBy(0, -window.innerHeight)
+      },
+      g: {
+        description: 'Home',
+        command: () => window.scroll(0, 0)
+      },
+      G: {
+        description: 'End',
+        command: () => window.scroll(0, document.body.scrollHeight)
+      },
+      H: {
+        description: 'Back',
+        command: () => history.go(-1)
+      },
+      L: {
+        description: 'Forward',
+        command: () => history.go(1)
+      },
+      r: {
+        description: 'Reload',
+        command: () => location.reload()
+      },
+      R: {
+        description: 'Reload (no cache)',
+        command: () => location.reload(true)
+      },
+      u: {
+        description: 'Parent location',
+        command: () => location.href = location.href.replace(new RegExp('^([a-z]+://.+)/.+/?$'), '$1')
+      },
+      U: {
+        description: 'Root location',
+        command: () => location.href = location.origin
+      },
+      Escape: {
+        description: 'Escape node',
+        command: () => document.activeElement.blur()
+      },
+      ['a-Escape']: {
+        description: 'Idle mode',
+        command: () => {
+          UI.Main.stop()
+          UI.Idle.start()
+        }
       }
     },
     insert: {
-      Escape: () => document.activeElement.blur()
+      Escape: {
+        description: 'Escape node',
+        command: () => document.activeElement.blur()
+      }
     }
   }),
   Idle: new Modal({
     normal: {
-      ['a-Escape']: () => {
-        UI.Idle.stop()
-        UI.Main.start()
+      ['a-Escape']: {
+        description: 'Main mode',
+        command: () => {
+          UI.Idle.stop()
+          UI.Main.start()
+        }
       }
     }
   })
