@@ -6,6 +6,7 @@ Features
 - Modes
   - Normal
   - Insert
+- Single key support, but chainable
 - Contextual help
 - CSS
 
