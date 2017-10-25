@@ -46,6 +46,18 @@ With `command` being a single key.
 
 With `action` being a function.
 
+CSS
+---
+
+- [css/modal.css](css/modal.css)
+
+- `#modal`
+  - `.active` `.inactive`
+    - `.title`
+    - `.key`
+    - `.description`
+    - `.default`
+
 Examples
 --------
 
