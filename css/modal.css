@@ -1,7 +1,21 @@
+/*
+* http://ethanschoonover.com/solarized
+*/
+
 #modal {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff785), color-stop(100%, #ffc542));
+  --color-base-00: #657b83;
+  --color-base-1: #93a1a1;
+  --color-base-2: #eee8d5;
+  --color-base-3: #fdf6e3;
+  --color-violet: #6c71c4;
+  --color-lighten-violet-10: #868bde;
+  --color-darken-violet-10: #5358ab;
+}
+
+#modal {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, var(--color-base-2)), color-stop(100%, var(--color-base-3)));
   border-radius: 3px;
-  border: solid 1px #c38a22;
+  border: solid 1px var(--color-base-1);
   box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.3);
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
   padding: 1px 3px 0 3px;
@@ -10,7 +24,7 @@
 
 #modal * {
   font-family: sans-serif;
-  color: #302505;
+  color: var(--color-base-00);
   font-size: .9em;
   font-weight: bold;
 }
@@ -33,9 +47,10 @@
 }
 
 #modal .key {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff785), color-stop(100%, #ffc542));
+  color: var(--color-base-3);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, var(--color-lighten-violet-10)), color-stop(100%, var(--color-violet)));
   border-radius: 3px;
-  border: solid 1px #c38a22;
+  border: solid 1px var(--color-darken-violet-10);
   box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.3);
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
   padding: 1px 3px 0 3px;
