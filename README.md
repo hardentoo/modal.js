@@ -1,5 +1,13 @@
 JavaScript library to build modal interfaces.
 
+Features
+--------
+
+- Modes
+  - Normal
+  - Insert
+- Contextual help
+
 Dependencies
 ------------
 
