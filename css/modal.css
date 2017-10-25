@@ -8,7 +8,7 @@
   --color-base-2: #eee8d5;
   --color-base-3: #fdf6e3;
   --color-violet: #6c71c4;
-  --color-lighten-violet-10: #868bde;
+  --color-lighten-violet-20: #9fa4f7;
   --color-darken-violet-10: #5358ab;
 }
 
@@ -48,7 +48,7 @@
 
 #modal .key {
   color: var(--color-base-3);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, var(--color-lighten-violet-10)), color-stop(100%, var(--color-violet)));
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, var(--color-lighten-violet-20)), color-stop(100%, var(--color-violet)));
   border-radius: 3px;
   border: solid 1px var(--color-darken-violet-10);
   box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.3);
