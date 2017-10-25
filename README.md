@@ -119,6 +119,9 @@ UI = {
         command: () => document.activeElement.blur()
       }
     }
+  },
+  {
+    context: false
   }),
   Idle: new Modal({
     normal: {
