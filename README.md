@@ -7,6 +7,7 @@ Features
   - Normal
   - Insert
 - Contextual help
+- CSS
 
 Dependencies
 ------------
