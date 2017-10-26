@@ -33,8 +33,14 @@ With `commands` being:
 ```
 {
   <mode>: {
-    <command>: <action>,
-    default: <action>
+    <key>: {
+      description: <description>,
+      function: <function>
+    },
+    default: {
+      description: <description>,
+      function: <function>
+    }
   }
 }
 ```
@@ -44,9 +50,7 @@ With `mode` being:
 - `normal`
 - `insert`
 
-With `command` being a single key.
-
-With `action` being a function.
+With `key` being a single key.
 
 CSS
 ---
@@ -69,67 +73,67 @@ UI = {
     normal: {
       j: {
         description: 'Down',
-        command: () => window.scrollBy(0, 40)
+        function: () => window.scrollBy(0, 40)
       },
       k: {
         description: 'Up',
-        command: () => window.scrollBy(0, -40)
+        function: () => window.scrollBy(0, -40)
       },
       h: {
         description: 'Left',
-        command: () => window.scrollBy(-40, 0)
+        function: () => window.scrollBy(-40, 0)
       },
       l: {
         description: 'Right',
-        command: () => window.scrollBy(40, 0)
+        function: () => window.scrollBy(40, 0)
       },
       J: {
         description: 'Page Down',
-        command: () => window.scrollBy(0, window.innerHeight)
+        function: () => window.scrollBy(0, window.innerHeight)
       },
       K: {
         description: 'Page Up',
-        command: () => window.scrollBy(0, -window.innerHeight)
+        function: () => window.scrollBy(0, -window.innerHeight)
       },
       g: {
         description: 'Home',
-        command: () => window.scroll(0, 0)
+        function: () => window.scroll(0, 0)
       },
       G: {
         description: 'End',
-        command: () => window.scroll(0, document.body.scrollHeight)
+        function: () => window.scroll(0, document.body.scrollHeight)
       },
       H: {
         description: 'Back',
-        command: () => history.go(-1)
+        function: () => history.go(-1)
       },
       L: {
         description: 'Forward',
-        command: () => history.go(1)
+        function: () => history.go(1)
       },
       r: {
         description: 'Reload',
-        command: () => location.reload()
+        function: () => location.reload()
       },
       R: {
         description: 'Reload (no cache)',
-        command: () => location.reload(true)
+        function: () => location.reload(true)
       },
       u: {
         description: 'Parent location',
-        command: () => location.href = location.href.replace(new RegExp('^([a-z]+://.+)/.+/?$'), '$1')
+        function: () => location.href = location.href.replace(new RegExp('^([a-z]+://.+)/.+/?$'), '$1')
       },
       U: {
         description: 'Root location',
-        command: () => location.href = location.origin
+        function: () => location.href = location.origin
       },
       Escape: {
         description: 'Escape node',
-        command: () => document.activeElement.blur()
+        function: () => document.activeElement.blur()
       },
       ['a-Escape']: {
         description: 'Idle mode',
-        command: () => {
+        function: () => {
           UI.Main.stop()
           UI.Idle.start()
         }
@@ -138,7 +142,7 @@ UI = {
     insert: {
       Escape: {
         description: 'Escape node',
-        command: () => document.activeElement.blur()
+        function: () => document.activeElement.blur()
       }
     }
   },
@@ -149,7 +153,7 @@ UI = {
     normal: {
       ['a-Escape']: {
         description: 'Main mode',
-        command: () => {
+        function: () => {
           UI.Idle.stop()
           UI.Main.start()
         }
