@@ -13,7 +13,7 @@ Features
 Dependencies
 ------------
 
-- [is-element-editable.js][]
+- [editable-content.js][]
 
 Methods
 -------
@@ -167,4 +167,4 @@ UI = {
 UI.Main.start()
 ```
 
-[is-element-editable.js]: https://github.com/alexherbo2/is-element-editable.js
+[editable-content.js]: https://github.com/alexherbo2/editable-content.js
