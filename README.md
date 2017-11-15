@@ -64,6 +64,7 @@ CSS
 - `#modal`
   - `.active` `.inactive`
     - `.title`
+    - `.keys`
     - `.key`
     - `.description`
     - `.default`
