@@ -6,6 +6,10 @@ Features
 - Modes
   - Normal
   - Insert
+- Key
+  - Press
+  - Down
+  - Up
 - Single key support, but chainable
 - Contextual help
 - CSS
@@ -28,26 +32,26 @@ Methods
   - `start`
   - `stop`
 
-With `commands` being:
+With `commands` being a list of `command`:
 
 ```
 {
-  <mode>: {
-    <key>: {
-      description: <description>,
-      function: <function>
-    },
-    default: {
-      description: <description>,
-      function: <function>
-    }
-  }
+  mode: <mode>,
+  key: <key>,
+  modifiers: {
+    control: <boolean>,
+    alt: <boolean>,
+    meta: <boolean>,
+  },
+  description: <description>,
+  function: <function>,
+  default: <boolean>
 }
 ```
 
 With `mode` being:
 
-- `normal`
+- `normal` (default)
 - `insert`
 
 With `key` being a single key.
@@ -69,97 +73,116 @@ Examples
 
 ``` javascript
 UI = {
-  Main: new Modal({
-    normal: {
-      j: {
-        description: 'Down',
-        function: () => window.scrollBy(0, 40)
+  Main: new Modal([
+    {
+      key: 'j',
+      description: 'Down',
+      function: () => window.scrollBy(0, 40)
+    },
+    {
+      key: 'k',
+      description: 'Up',
+      function: () => window.scrollBy(0, -40)
+    },
+    {
+      key: 'h',
+      description: 'Left',
+      function: () => window.scrollBy(-40, 0)
+    },
+    {
+      key: 'l',
+      description: 'Right',
+      function: () => window.scrollBy(40, 0)
+    },
+    {
+      key: 'J',
+      description: 'Page Down',
+      function: () => window.scrollBy(0, window.innerHeight)
+    },
+    {
+      key: 'K',
+      description: 'Page Up',
+      function: () => window.scrollBy(0, -window.innerHeight)
+    },
+    {
+      key: 'g',
+      description: 'Home',
+      function: () => window.scroll(0, 0)
+    },
+    {
+      key: 'G',
+      description: 'End',
+      function: () => window.scroll(0, document.body.scrollHeight)
+    },
+    {
+      key: 'H',
+      description: 'Back',
+      function: () => history.go(-1)
+    },
+    {
+      key: 'L',
+      description: 'Forward',
+      function: () => history.go(1)
+    },
+    {
+      key: 'r',
+      description: 'Reload',
+      function: () => location.reload()
+    },
+    {
+      key: 'R',
+      description: 'Reload (no cache)',
+      function: () => location.reload(true)
+    },
+    {
+      key: 'u',
+      description: 'Parent location',
+      function: () => location.href = location.href.replace(new RegExp('^([a-z]+://.+)/.+/?$'), '$1')
+    },
+    {
+      key: 'U',
+      description: 'Root location',
+      function: () => location.href = location.origin
+    },
+    {
+      key: 'Escape',
+      description: 'Escape node',
+      function: () => document.activeElement.blur()
+    },
+    {
+      key: 'Escape',
+      modifiers: {
+        alt: true
       },
-      k: {
-        description: 'Up',
-        function: () => window.scrollBy(0, -40)
-      },
-      h: {
-        description: 'Left',
-        function: () => window.scrollBy(-40, 0)
-      },
-      l: {
-        description: 'Right',
-        function: () => window.scrollBy(40, 0)
-      },
-      J: {
-        description: 'Page Down',
-        function: () => window.scrollBy(0, window.innerHeight)
-      },
-      K: {
-        description: 'Page Up',
-        function: () => window.scrollBy(0, -window.innerHeight)
-      },
-      g: {
-        description: 'Home',
-        function: () => window.scroll(0, 0)
-      },
-      G: {
-        description: 'End',
-        function: () => window.scroll(0, document.body.scrollHeight)
-      },
-      H: {
-        description: 'Back',
-        function: () => history.go(-1)
-      },
-      L: {
-        description: 'Forward',
-        function: () => history.go(1)
-      },
-      r: {
-        description: 'Reload',
-        function: () => location.reload()
-      },
-      R: {
-        description: 'Reload (no cache)',
-        function: () => location.reload(true)
-      },
-      u: {
-        description: 'Parent location',
-        function: () => location.href = location.href.replace(new RegExp('^([a-z]+://.+)/.+/?$'), '$1')
-      },
-      U: {
-        description: 'Root location',
-        function: () => location.href = location.origin
-      },
-      Escape: {
-        description: 'Escape node',
-        function: () => document.activeElement.blur()
-      },
-      ['a-Escape']: {
-        description: 'Idle mode',
-        function: () => {
-          UI.Main.stop()
-          UI.Idle.start()
-        }
+      description: 'Idle mode',
+      function: () => {
+        UI.Main.stop()
+        UI.Idle.start()
       }
     },
-    insert: {
-      Escape: {
-        description: 'Escape node',
-        function: () => document.activeElement.blur()
-      }
+    {
+      mode: 'insert',
+      key: 'Escape',
+      description: 'Escape node',
+      function: () => document.activeElement.blur()
     }
-  },
+  ],
   {
     context: false
   }),
-  Idle: new Modal({
-    normal: {
-      ['a-Escape']: {
-        description: 'Main mode',
-        function: () => {
-          UI.Idle.stop()
-          UI.Main.start()
-        }
+  Idle: new Modal([
+    {
+      key: 'Escape',
+      modifiers: {
+        alt: true
+      },
+      description: 'Main mode',
+      function: () => {
+        UI.Idle.stop()
+        UI.Main.start()
       }
     }
-  })
+  ])
 }
 ```
 
